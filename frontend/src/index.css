@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Instrument+Sans:wght@400..700&display=swap");
+@import "tailwindcss";
+
+/* Palette: a chilled aisle, a price ticket, and a till-roll ink */
+@theme {
+  --color-paper: #eef2f1;
+  --color-panel: #fafcfb;
+  --color-ink: #13222b;
+  --color-muted: #4a6571;
+  --color-rule: #c4d0d0;
+  --color-ticket: #ffd23f;
+  --color-loss: #b3261e;
+  --color-loss-tint: #f7dfdb;
+  --color-gain: #1d6b4c;
+  --color-gain-tint: #d8ece1;
+
+  --font-sans: "Instrument Sans", system-ui, sans-serif;
+  --font-display: "Archivo", "Arial Narrow", sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-ticket);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  header :focus-visible {
+    outline-color: var(--color-ticket);
+  }
+
+  button:not(:disabled),
+  select {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  /* Shelf-label lettering: condensed, heavy, tight */
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 70%;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.02;
+  }
+}
+
+/* The one moment of motion: the revenue ticket prints in */
+@keyframes print {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.ticket-print {
+  animation: print 0.8s steps(16, end) both;
+}
+
+/* Loading bar */
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+.sweep {
+  animation: sweep 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-print,
+  .sweep {
+    animation: none;
+  }
+}

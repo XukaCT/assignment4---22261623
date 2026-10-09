@@ -1,0 +1,17 @@
+{
+  "name": "autonomous-supermarket-backend",
+  "version": "1.0.0",
+  "description": "Express + SQLite backend for the Autonomous Supermarket simulation (Assignment 4)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node scripts/seed-submitted-run.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
